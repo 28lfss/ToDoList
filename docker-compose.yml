@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0.41-debian
+    container_name: mysql_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: todolist_db
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/users.sql:/docker-entrypoint-initdb.d/1-users.sql
+      - ./database/notes.sql:/docker-entrypoint-initdb.d/2-notes.sql
+
+# PROCESS TO DOCKERIZE ToDoList_app
+
+#  app:
+#    build: .
+#    container_name: todolist_app
+#    depends_on:
+#      - mysql
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/todolist_db?useSSL=false&serverTimezone=UTC
+#      SPRING_DATASOURCE_USERNAME: myuser
+#      SPRING_DATASOURCE_PASSWORD: mypassword
+#    ports:
+#      - "8080:8080"
+
+volumes:
+  mysql_data:
