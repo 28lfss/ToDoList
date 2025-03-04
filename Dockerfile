@@ -1,4 +1,4 @@
-# PROCESS TO DOCKERIZE ToDoList_app
+# PROCESS TO DOCKERIZE ToDoList_app (need to generate a .jar file)
 
 #FROM openjdk:21-jdk
 #LABEL authors="28lfss"
